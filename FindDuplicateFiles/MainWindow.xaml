@@ -1,0 +1,52 @@
+﻿<Window x:Class="FindDuplicateFiles.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FindDuplicateFiles"
+        mc:Ignorable="d" FontSize="18" FontFamily="Segoe UI"
+        Title="FindDuplicateFiles" Height="450" Width="800">
+    <Grid Background="Azure" ShowGridLines="True">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="auto" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
+        </Grid.RowDefinitions>
+        
+        <Button x:Name="SelectFolderButton" Content="Select Folder" Grid.Column="1" Grid.Row="2" 
+                Click="SelectFolderButton_Click" />
+        <TextBox x:Name="SearchPathsTextBox" Grid.Column="3" Grid.Row="2" 
+                   Text="" />
+        
+        <Button x:Name="SelectFolderButton2" Content="Select Folder" Grid.Column="1" Grid.Row="3" 
+                Click="SelectFolderButton2_Click" />
+        <TextBox x:Name="SearchPathsTextBox2" Grid.Column="3" Grid.Row="3" 
+                   Text="" TextWrapping="Wrap"/>
+       
+         
+        <Button x:Name="SelectFolderButton3" Content="Delete" Grid.Column="1" Grid.Row="4" 
+         Click="SelectFolderButton3_Click" />
+
+        <ListBox x:Name="FolderListbox" Grid.Column="3" Grid.Row="4" 
+                 SelectionMode="Extended" ItemsSource="{Binding MyFolders}"/>
+
+        <TreeView x:Name="DuplicateTreeView" Grid.Row="6" Grid.ColumnSpan="4" >
+            <TreeViewItem Header="Key"></TreeViewItem>
+        </TreeView>
+
+
+    </Grid>
+</Window>
