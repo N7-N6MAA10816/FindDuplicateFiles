@@ -4,19 +4,20 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FindDuplicateFiles"
-        mc:Ignorable="d" FontSize="18" FontFamily="Segoe UI"
-        Title="FindDuplicateFiles" Height="450" Width="800">
-    <Grid Background="Azure" ShowGridLines="True">
+        mc:Ignorable="d" FontSize="16" FontFamily="Segoe UI"
+        Title="FindDuplicateFiles v.0.1" Height="600" Width="800">
+
+    <Grid Background="White" ShowGridLines="False">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="auto" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="10" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="20" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -25,28 +26,52 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        
-        <Button x:Name="SelectFolderButton" Content="Select Folder" Grid.Column="1" Grid.Row="2" 
-                Click="SelectFolderButton_Click" />
-        <TextBox x:Name="SearchPathsTextBox" Grid.Column="3" Grid.Row="2" 
-                   Text="" />
-        
-        <Button x:Name="SelectFolderButton2" Content="Select Folder" Grid.Column="1" Grid.Row="3" 
-                Click="SelectFolderButton2_Click" />
-        <TextBox x:Name="SearchPathsTextBox2" Grid.Column="3" Grid.Row="3" 
-                   Text="" TextWrapping="Wrap"/>
-       
-         
-        <Button x:Name="SelectFolderButton3" Content="Delete" Grid.Column="1" Grid.Row="4" 
-         Click="SelectFolderButton3_Click" />
 
-        <ListBox x:Name="FolderListbox" Grid.Column="3" Grid.Row="4" 
-                 SelectionMode="Extended" ItemsSource="{Binding MyFolders}"/>
+        <Border Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="6" Grid.RowSpan="8" Background="LightGray" />
 
-        <TreeView x:Name="DuplicateTreeView" Grid.Row="6" Grid.ColumnSpan="4" >
-            <TreeViewItem Header="Key"></TreeViewItem>
+        <Menu Grid.Column="1" Grid.Row="0" Background="White">
+            <MenuItem Header="_File" Click="File_Exit_Click">
+                <MenuItem Header="_Exit"/>
+            </MenuItem>
+            <MenuItem Header="_Help">
+                <MenuItem Header="_About"/>
+            </MenuItem>
+        </Menu>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="6">
+            <Button x:Name="SelectFolderButton1" Content="Select Folder" Margin="5" 
+                Click="SelectFolderButton1_Click" />
+            <Button x:Name="DeleteFolderButton" Content="Remove" Margin="5" 
+                    Click="DeleteFolder_Click" />
+            <Button x:Name="DeleteAllFolderButton" Content="Clear All" Margin="5"  
+                    Click="DeleteAllFolder_Click" />
+        </StackPanel>
+
+        <ListBox x:Name="FolderListbox" Grid.Column="1" Grid.Row="2" MinHeight="80"
+                 SelectionMode="Multiple" ItemsSource="{Binding MyFolders}"
+                 Grid.ColumnSpan="4" BorderBrush="Black"/>
+
+        <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="6">
+            <Button x:Name="ScanButton" Content="Scan" Margin="5" 
+                Click="ScanButton_Click" />
+            <Button x:Name="StopButton" Content="Stop" Margin="5" 
+                    Click="StopButton_Click" />
+        </StackPanel>
+
+        <TreeView x:Name="DuplicateTreeView" Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="4" >
+            <!--DataContextChanged="DuplicateTreeView_DataContextChanged" 
+                  Loaded="DuplicateTreeView_Loaded"-->
+            
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding Value}">
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding}"/>
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                    <TextBlock Text="{Binding Key}"/>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
         </TreeView>
-
 
     </Grid>
 </Window>

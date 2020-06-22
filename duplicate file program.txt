@@ -1,0 +1,7 @@
+https://docs.microsoft.com/en-us/dotnet/csharp/event-pattern
+// instructions on events, gives examples of filesearcher
+
+https://stackoverflow.com/questions/12332451/list-all-files-and-directories-in-a-directory-subdirectories
+
+
+=====================================
